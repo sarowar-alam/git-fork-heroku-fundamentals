@@ -1,4 +1,4 @@
-# 05 â€” Branch Protection Rules
+# 05 — Branch Protection Rules
 
 > **Phase 5 of 7** | Restrict branch deletion, block history rewrites, require Pull Requests and reviews.
 
@@ -22,8 +22,8 @@
 ## 1. Why Protect Branches?
 
 Without protection, any collaborator with Write access can:
-- `git push --force` â†’ overwrite and rewrite history of `main`
-- `git push origin --delete main` â†’ delete the production branch
+- `git push --force` → overwrite and rewrite history of `main`
+- `git push origin --delete main` → delete the production branch
 - Push directly to `main`, skipping code review
 
 Branch protection prevents all of this.
@@ -36,12 +36,12 @@ Branch protection prevents all of this.
 
 **Navigation:**
 ```
-GitHub Repo â†’ Settings â†’ Branches â†’ "Add branch ruleset" or "Add classic branch protection rule"
+GitHub Repo → Settings → Branches → "Add branch ruleset" or "Add classic branch protection rule"
 ```
 
 There are two systems:
-- **Branch protection rules** (classic) â€” per branch, simple
-- **Rulesets** (new, recommended) â€” more powerful, supports multiple branches
+- **Branch protection rules** (classic) — per branch, simple
+- **Rulesets** (new, recommended) — more powerful, supports multiple branches
 
 We'll cover both, starting with the classic system.
 
@@ -49,13 +49,13 @@ We'll cover both, starting with the classic system.
 
 ## 3. Restrict Branch Deletion
 
-**What it does:** Prevents anyone from deleting the protected branch â€” even users with Admin role (unless they enable "Allow deletions" bypass).
+**What it does:** Prevents anyone from deleting the protected branch — even users with Admin role (unless they enable "Allow deletions" bypass).
 
 ### Enable it (Classic Rules)
 
-1. Go to **Settings â†’ Branches â†’ Add rule**
+1. Go to **Settings → Branches → Add rule**
 2. In **Branch name pattern**, type: `main`
-3. Scroll down to find âœ… **Do not allow deletions**
+3. Scroll down to find ✅ **Do not allow deletions**
 4. Click **Create** (or **Save changes**)
 
 ### What happens when someone tries to delete
@@ -71,8 +71,8 @@ git push origin --delete main
 
 ### Verify it's working
 
-1. Go to the repo â†’ **Branches**
-2. Try to click the trash icon next to `main` â€” it will be grayed out or blocked
+1. Go to the repo → **Branches**
+2. Try to click the trash icon next to `main` — it will be grayed out or blocked
 
 ---
 
@@ -93,8 +93,8 @@ git push --force origin main   # overwrites remote history
 
 ### Enable it (Classic Rules)
 
-1. **Settings â†’ Branches â†’ Add/edit rule for `main`**
-2. Scroll to âœ… **Block force pushes**
+1. **Settings → Branches → Add/edit rule for `main`**
+2. Scroll to ✅ **Block force pushes**
 3. Save
 
 ### What happens when blocked
@@ -110,7 +110,7 @@ git push --force origin main
 Even `--force-with-lease` is blocked:
 ```bash
 git push --force-with-lease origin main
-# Same error as above â€” force is force on protected branches
+# Same error as above — force is force on protected branches
 ```
 
 ---
@@ -121,8 +121,8 @@ git push --force-with-lease origin main
 
 ### Enable it (Classic Rules)
 
-1. **Settings â†’ Branches â†’ Add/edit rule for `main`**
-2. âœ… **Require a pull request before merging**
+1. **Settings → Branches → Add/edit rule for `main`**
+2. ✅ **Require a pull request before merging**
 3. Save
 
 ### What happens when someone tries to push directly
@@ -165,11 +165,11 @@ git push -u origin feature/add-profile
 ### Enable it
 
 1. After enabling "Require pull request before merging"
-2. âœ… **Require approvals**
+2. ✅ **Require approvals**
 3. Set **Required number of approvals before merging**: `1` (or more for large teams)
-4. Optional: âœ… **Dismiss stale pull request approvals when new commits are pushed**
+4. Optional: ✅ **Dismiss stale pull request approvals when new commits are pushed**
    - This means if you push more commits after approval, the approval is dismissed and someone must re-review
-5. Optional: âœ… **Require review from Code Owners**
+5. Optional: ✅ **Require review from Code Owners**
 
 ### How code review works
 
@@ -182,17 +182,17 @@ Reviewer (Developer B):
 1. Opens the PR
 2. Reviews the "Files changed" tab
 3. Adds inline comments on specific lines
-4. Clicks "Review changes" â†’
-   - "Comment" â€” leave comments only
-   - "Approve" â€” approve the PR âœ…
-   - "Request changes" â€” block merge until addressed âŒ
+4. Clicks "Review changes" →
+   - "Comment" — leave comments only
+   - "Approve" — approve the PR ✅
+   - "Request changes" — block merge until addressed âŒ
 
 Developer A:
 5. Addresses feedback, pushes more commits
 6. Re-requests review
 
 Developer B:
-7. Re-reviews â†’ Approves âœ…
+7. Re-reviews → Approves ✅
 
 Now PR can be merged.
 ```
@@ -205,8 +205,8 @@ Now PR can be merged.
 
 ### Enable it
 
-1. âœ… **Require status checks to pass before merging**
-2. âœ… **Require branches to be up to date before merging** (prevents merging stale branches)
+1. ✅ **Require status checks to pass before merging**
+2. ✅ **Require branches to be up to date before merging** (prevents merging stale branches)
 3. In the search box, type the name of your CI check (e.g., `test`, `build`, `lint`)
 4. The check must run at least once before you can add it here
 
@@ -233,7 +233,7 @@ jobs:
       - run: npm test
 ```
 
-Now every PR runs this check. If tests fail â†’ merge is blocked automatically.
+Now every PR runs this check. If tests fail → merge is blocked automatically.
 
 ---
 
@@ -241,15 +241,15 @@ Now every PR runs this check. If tests fail â†’ merge is blocked automatica
 
 Some rules can be bypassed by Admins. Here's how to control that:
 
-### Classic rules â€” include/exclude admins
+### Classic rules — include/exclude admins
 
-1. âœ… **Do not allow bypassing the above settings**
+1. ✅ **Do not allow bypassing the above settings**
    - When checked: even Admins cannot bypass (strongest protection)
    - When unchecked: Admins can bypass all rules
 
 **Recommendation:** Check this for `main` in production repos. It forces Admins to follow the same process as everyone else.
 
-### Rulesets â€” fine-grained bypass
+### Rulesets — fine-grained bypass
 
 With Rulesets (GitHub's newer system), you can set specific bypass actors:
 - Specific teams (e.g., only "release-team" can merge without review)
@@ -260,23 +260,23 @@ With Rulesets (GitHub's newer system), you can set specific bypass actors:
 
 ## 9. Protecting the develop Branch
 
-Apply similar rules to `develop` â€” the integration branch.
+Apply similar rules to `develop` — the integration branch.
 
 **Recommended settings for `develop`:**
 
 | Rule | Main | Develop |
 |---|---|---|
-| Restrict deletions | âœ… | âœ… |
-| Block force pushes | âœ… | âœ… |
-| Require PR | âœ… | âœ… |
+| Restrict deletions | ✅ | ✅ |
+| Block force pushes | ✅ | ✅ |
+| Require PR | ✅ | ✅ |
 | Required approvals | 2 | 1 |
-| Require CI to pass | âœ… | âœ… |
-| Dismiss stale reviews | âœ… | âœ… |
-| Admin bypass | âŒ (none) | âœ… (admin only) |
+| Require CI to pass | ✅ | ✅ |
+| Dismiss stale reviews | ✅ | ✅ |
+| Admin bypass | âŒ (none) | ✅ (admin only) |
 
 **Steps to add protection for `develop`:**2
 
-1. **Settings â†’ Branches â†’ Add rule**
+1. **Settings → Branches → Add rule**
 2. Branch name pattern: `develop`
 3. Apply desired settings (less strict than `main`)
 4. Save
@@ -296,7 +296,7 @@ Rulesets are the new, more powerful replacement for classic branch protection ru
 
 ### Create a Ruleset
 
-1. **Settings â†’ Rules â†’ Rulesets â†’ New branch ruleset**
+1. **Settings → Rules → Rulesets → New branch ruleset**
 2. **Name**: `Protect main and develop`
 3. **Enforcement status**: Active (or Evaluate to test without blocking)
 4. **Bypass list**: Add teams/roles that can bypass
@@ -305,10 +305,10 @@ Rulesets are the new, more powerful replacement for classic branch protection ru
    - `develop`
    - `release/**` (all release branches)
 6. **Rules to enable**:
-   - âœ… Restrict deletions
-   - âœ… Require a pull request
-   - âœ… Block force pushes
-   - âœ… Require status checks
+   - ✅ Restrict deletions
+   - ✅ Require a pull request
+   - ✅ Block force pushes
+   - ✅ Require status checks
 7. Click **Create**
 
 ### Pattern examples
@@ -333,7 +333,7 @@ Rulesets are the new, more powerful replacement for classic branch protection ru
 | Require status checks | Broken/untested code reaching production |
 | Admin bypass disabled | Admins being exempt from all of the above |
 
-**Next:** [06 â€” Fork & Collaborate â†’](./06-FORK-COLLABORATE.md)
+**Next:** [06 — Fork & Collaborate →](./06-FORK-COLLABORATE.md)
 
 ---
 

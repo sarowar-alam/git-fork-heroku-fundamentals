@@ -1,4 +1,4 @@
-# 01 â€” Setup & Installation
+# 01 — Setup & Installation
 
 > **Phase 1 of 7** | Start here if you're completely new to Git.
 
@@ -26,21 +26,21 @@ GitHub is where you host, share, and collaborate on Git repositories.
 ### Steps
 
 1. Go to **[https://github.com/signup](https://github.com/signup)**
-2. Enter your **email address** â†’ click **Continue**
+2. Enter your **email address** → click **Continue**
 3. Create a **password** (min 15 chars, or 8 chars + number + lowercase)
-4. Choose a **username** â€” this is your public handle (e.g., `sarowar-alam`)
-5. Solve the puzzle verification â†’ click **Create account**
-6. Check your email â†’ enter the **8-digit launch code**
+4. Choose a **username** — this is your public handle (e.g., `sarowar-alam`)
+5. Solve the puzzle verification → click **Create account**
+6. Check your email → enter the **8-digit launch code**
 7. Answer the onboarding questions (or skip)
-8. Choose the **Free plan** â†’ click **Continue for free**
+8. Choose the **Free plan** → click **Continue for free**
 
-### After signing up â€” do these
+### After signing up — do these
 
 | Setting | Where | Why |
 |---|---|---|
-| Verify email | Emails â†’ click link | Required to create repos |
-| Add profile photo | Settings â†’ Profile | Builds credibility |
-| Enable 2FA (MFA) | Settings â†’ Password and authentication | **Strongly recommended** |
+| Verify email | Emails → click link | Required to create repos |
+| Add profile photo | Settings → Profile | Builds credibility |
+| Enable 2FA (MFA) | Settings → Password and authentication | **Strongly recommended** |
 | Set public profile | github.com/settings/profile | Visible to employers |
 
 > **Tip:** Your GitHub username appears in all your repo URLs, e.g., `github.com/sarowar-alam`. Choose carefully.
@@ -51,18 +51,18 @@ GitHub is where you host, share, and collaborate on Git repositories.
 
 ### Windows
 
-**Option A â€” winget (Windows 10/11, recommended)**
+**Option A — winget (Windows 10/11, recommended)**
 ```powershell
 winget install --id Git.Git -e --source winget
 ```
 
-**Option B â€” Direct installer**
+**Option B — Direct installer**
 1. Download from **[https://git-scm.com/download/win](https://git-scm.com/download/win)**
 2. Run the installer
 3. Recommended settings to change from defaults:
-   - **Default editor** â†’ choose VS Code (if installed)
-   - **Initial branch name** â†’ select `main` (instead of `master`)
-   - **Adjusting PATH** â†’ "Git from the command line and also from 3rd-party software"
+   - **Default editor** → choose VS Code (if installed)
+   - **Initial branch name** → select `main` (instead of `master`)
+   - **Adjusting PATH** → "Git from the command line and also from 3rd-party software"
    - Keep all other defaults
 
 **Verify (PowerShell or Git Bash):**
@@ -77,7 +77,7 @@ git --version
 
 ### macOS
 
-**Option A â€” Homebrew (recommended)**
+**Option A — Homebrew (recommended)**
 ```bash
 # Install Homebrew first if you don't have it
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -86,10 +86,10 @@ git --version
 brew install git
 ```
 
-**Option B â€” Xcode Command Line Tools**
+**Option B — Xcode Command Line Tools**
 ```bash
 xcode-select --install
-# A dialog will appear â€” click Install
+# A dialog will appear — click Install
 ```
 
 **Verify:**
@@ -204,15 +204,15 @@ You need to authenticate to push/pull from GitHub. Two methods:
 
 ### Option A: HTTPS (recommended for beginners)
 
-With HTTPS you use a **Personal Access Token (PAT)** â€” NOT your GitHub password.
+With HTTPS you use a **Personal Access Token (PAT)** — NOT your GitHub password.
 
 #### Create a PAT
-1. GitHub â†’ **Settings** â†’ **Developer settings** â†’ **Personal access tokens** â†’ **Tokens (classic)**
+1. GitHub → **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)**
 2. Click **Generate new token (classic)**
 3. Note: `Git CLI access`
 4. Expiration: 90 days (or No expiration)
-5. Scopes: check âœ… **repo** (full control)
-6. Click **Generate token** â†’ **copy it NOW** (it won't show again)
+5. Scopes: check ✅ **repo** (full control)
+6. Click **Generate token** → **copy it NOW** (it won't show again)
 
 #### Use the PAT
 
@@ -224,12 +224,12 @@ Password: ghp_xxxxxxxxxxxx      â† paste your PAT here (not your password!)
 
 #### Save credentials (so you don't type every time)
 
-**Windows (Credential Manager â€” built-in):**
+**Windows (Credential Manager — built-in):**
 ```bash
 git config --global credential.helper manager
 ```
 
-**macOS (Keychain â€” built-in):**
+**macOS (Keychain — built-in):**
 ```bash
 git config --global credential.helper osxkeychain
 ```
@@ -239,7 +239,7 @@ git config --global credential.helper osxkeychain
 # Cache in memory for 1 hour
 git config --global credential.helper 'cache --timeout=3600'
 
-# Or store permanently (plain text â€” less secure)
+# Or store permanently (plain text — less secure)
 git config --global credential.helper store
 ```
 
@@ -249,7 +249,7 @@ git config --global credential.helper store
 
 SSH keys are more secure and you never type passwords.
 
-#### Step 1 â€” Generate an SSH key pair
+#### Step 1 — Generate an SSH key pair
 
 ```bash
 # Replace with YOUR GitHub email
@@ -260,10 +260,10 @@ ssh-keygen -t ed25519 -C "sarowar@example.com"
 ```
 
 This creates two files:
-- `~/.ssh/id_ed25519` â€” **private key** (never share this)
-- `~/.ssh/id_ed25519.pub` â€” **public key** (give this to GitHub)
+- `~/.ssh/id_ed25519` — **private key** (never share this)
+- `~/.ssh/id_ed25519.pub` — **public key** (give this to GitHub)
 
-#### Step 2 â€” Add the public key to GitHub
+#### Step 2 — Add the public key to GitHub
 
 ```bash
 # Display your public key
@@ -272,18 +272,18 @@ cat ~/.ssh/id_ed25519.pub
 ```
 
 1. Copy the entire output
-2. GitHub â†’ **Settings** â†’ **SSH and GPG keys** â†’ **New SSH key**
+2. GitHub → **Settings** → **SSH and GPG keys** → **New SSH key**
 3. Title: `My Laptop` (or whatever machine this is)
-4. Paste key â†’ click **Add SSH key**
+4. Paste key → click **Add SSH key**
 
-#### Step 3 â€” Test the connection
+#### Step 3 — Test the connection
 
 ```bash
 ssh -T git@github.com
 # Hi sarowar-alam! You've successfully authenticated...
 ```
 
-#### Step 4 â€” Use SSH URLs when cloning
+#### Step 4 — Use SSH URLs when cloning
 
 Instead of:
 ```bash
@@ -312,7 +312,7 @@ At this point you should have:
 - [x] `user.name` and `user.email` configured
 - [x] Authentication set up (HTTPS PAT or SSH key)
 
-**Next:** [02 â€” Repositories & Roles â†’](./02-REPOS.md)
+**Next:** [02 — Repositories & Roles →](./02-REPOS.md)
 
 ---
 

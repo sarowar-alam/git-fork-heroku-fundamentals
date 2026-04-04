@@ -1,4 +1,4 @@
-# 02 â€” Repositories, Cloning & Collaboration
+# 02 — Repositories, Cloning & Collaboration
 
 > **Phase 2 of 7** | Create repos, clone public and private repos on every environment, understand remotes, roles, forking, and pull requests.
 
@@ -13,11 +13,11 @@
 5. [Clone a Private Repo via HTTPS (PAT)](#5-clone-a-private-repo-via-https-pat)
 6. [Clone a Private Repo via SSH](#6-clone-a-private-repo-via-ssh)
 7. [Troubleshooting Auth per Environment](#7-troubleshooting-auth-per-environment)
-8. [The .git Folder â€” What's Inside](#8-the-git-folder--whats-inside)
-9. [Remotes â€” Connecting Local to Remote](#9-remotes--connecting-local-to-remote)
-10. [Upstream Remote â€” Deep Dive](#10-upstream-remote--deep-dive)
+8. [The .git Folder — What's Inside](#8-the-git-folder--whats-inside)
+9. [Remotes — Connecting Local to Remote](#9-remotes--connecting-local-to-remote)
+10. [Upstream Remote — Deep Dive](#10-upstream-remote--deep-dive)
 11. [Full Forking Contribution Workflow](#11-full-forking-contribution-workflow)
-12. [Pull Requests â€” Deep Dive](#12-pull-requests--deep-dive)
+12. [Pull Requests — Deep Dive](#12-pull-requests--deep-dive)
 13. [Complete OSS Contribution Cycle](#13-complete-oss-contribution-cycle)
 14. [GitHub Repository Roles](#14-github-repository-roles)
 
@@ -41,33 +41,33 @@ my-project/
 There are two types:
 | Type | Description |
 |---|---|
-| **Local** | Lives on your machine â€” `~/.../my-project` |
-| **Remote** | Lives on a server â€” `github.com/user/my-project` |
+| **Local** | Lives on your machine — `~/.../my-project` |
+| **Remote** | Lives on a server — `github.com/user/my-project` |
 
 ---
 
 ## 2. Create a Repository on GitHub
 
-### Method A â€” GitHub UI (easiest)
+### Method A — GitHub UI (easiest)
 
-1. Click the **+** button (top-right) â†’ **New repository**
+1. Click the **+** button (top-right) → **New repository**
 2. Fill in:
    - **Repository name**: `git-fork-heroku-fundamentals`
    - **Description**: `A comprehensive Git fundamentals learning repo`
    - **Visibility**: Public
-   - âœ… Add a README file (optional â€” we'll add our own)
-   - âœ… Add .gitignore â†’ choose `Node`
+   - ✅ Add a README file (optional — we'll add our own)
+   - ✅ Add .gitignore → choose `Node`
    - **License**: MIT
 3. Click **Create repository**
 
-### Method B â€” GitHub CLI
+### Method B — GitHub CLI
 
 ```bash
 # Install GitHub CLI first: https://cli.github.com
 gh repo create git-fork-heroku-fundamentals --public --description "Git fundamentals to Heroku"
 ```
 
-### Method C â€” From an existing local folder (what we do in this repo)
+### Method C — From an existing local folder (what we do in this repo)
 
 ```bash
 # 1. Initialize local repo
@@ -90,7 +90,7 @@ git push -u origin main
 
 ## 3. Clone a Repository (Public)
 
-`git clone` downloads a remote repo to your machine â€” including all history, branches, and tags.
+`git clone` downloads a remote repo to your machine — including all history, branches, and tags.
 
 ```bash
 # HTTPS
@@ -105,7 +105,7 @@ git clone https://github.com/user/repo.git my-custom-folder-name
 # Clone a specific branch only
 git clone -b develop https://github.com/user/repo.git
 
-# Shallow clone â€” only latest snapshot (faster, no full history)
+# Shallow clone — only latest snapshot (faster, no full history)
 git clone --depth 1 https://github.com/user/repo.git
 ```
 
@@ -144,12 +144,12 @@ GitHub no longer accepts your account password for HTTPS operations. You need a 
 
 ### Create a PAT (do this once)
 
-1. GitHub â†’ **Settings** â†’ **Developer settings** â†’ **Personal access tokens** â†’ **Tokens (classic)**
+1. GitHub → **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)**
 2. **Generate new token (classic)**
 3. Note: `CLI - Git access`
 4. Expiration: 90 days (or custom)
-5. Scopes: âœ… **repo** (full control of private repos)
-6. Click **Generate token** â†’ **copy it immediately**
+5. Scopes: ✅ **repo** (full control of private repos)
+6. Click **Generate token** → **copy it immediately**
    - It looks like: `ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
    - You will NOT see it again
 
@@ -158,7 +158,7 @@ GitHub no longer accepts your account password for HTTPS operations. You need a 
 ### Windows (PowerShell / CMD)
 
 ```powershell
-# Clone â€” when prompted:
+# Clone — when prompted:
 # Username: your-github-username
 # Password: your-PAT (NOT your GitHub password)
 git clone https://github.com/yourusername/private-repo.git
@@ -166,14 +166,14 @@ git clone https://github.com/yourusername/private-repo.git
 
 **Save credentials so you don't type every time:**
 ```powershell
-# Windows Credential Manager (built-in â€” recommended)
+# Windows Credential Manager (built-in — recommended)
 git config --global credential.helper manager
 
 # After running git clone once and entering PAT,
 # Windows stores it. Future clones/pushes are automatic.
 ```
 
-**Embed credentials in URL (quick method â€” use caution, URL stays in shell history):**
+**Embed credentials in URL (quick method — use caution, URL stays in shell history):**
 ```powershell
 git clone https://your-username:ghp_xxxYOURTOKENxxx@github.com/yourusername/private-repo.git
 ```
@@ -187,7 +187,7 @@ Git Bash uses the same Windows Credential Manager as PowerShell:
 ```bash
 # In Git Bash terminal
 git clone https://github.com/yourusername/private-repo.git
-# Git Credential Manager opens a dialog â€” sign in to GitHub once
+# Git Credential Manager opens a dialog — sign in to GitHub once
 # All future operations are automatic
 
 # Verify credential helper
@@ -203,7 +203,7 @@ git clone https://your-username:ghp_xxxTOKENxxx@github.com/yourusername/private-
 # Or configure store (saves token in plaintext ~/.git-credentials)
 git config --global credential.helper store
 git clone https://github.com/yourusername/private-repo.git
-# Enter username + PAT once â€” saved permanently
+# Enter username + PAT once — saved permanently
 ```
 
 ---
@@ -212,12 +212,12 @@ git clone https://github.com/yourusername/private-repo.git
 
 > WSL does NOT share the Windows Credential Manager by default. You need to set one up.
 
-**Option A â€” Git Credential Manager from Windows (recommended)**
+**Option A — Git Credential Manager from Windows (recommended)**
 
 WSL can use the Windows Git Credential Manager installed on the Windows side:
 
 ```bash
-# In WSL terminal â€” tell Git to use the Windows credential manager
+# In WSL terminal — tell Git to use the Windows credential manager
 git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 
 # If using Git for Windows 64-bit:
@@ -225,32 +225,32 @@ git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec
 
 # Test it
 git clone https://github.com/yourusername/private-repo.git
-# A browser window will open on Windows for sign-in â€” works with MFA!
+# A browser window will open on Windows for sign-in — works with MFA!
 ```
 
-**Option B â€” Store PAT in memory (cache)**
+**Option B — Store PAT in memory (cache)**
 ```bash
 # Cache credentials for 3600 seconds (1 hour)
 git config --global credential.helper 'cache --timeout=3600'
 
-# Now clone â€” enter username + PAT once
+# Now clone — enter username + PAT once
 git clone https://github.com/yourusername/private-repo.git
 # Username: your-github-username
 # Password: ghp_xxxTOKENxxx
 ```
 
-**Option C â€” Store PAT on disk (plain text)**
+**Option C — Store PAT on disk (plain text)**
 ```bash
 git config --global credential.helper store
 # Saves to ~/.git-credentials in format:
 # https://username:ghp_TOKEN@github.com
 
 git clone https://github.com/yourusername/private-repo.git
-# Enter once â€” saved permanently
+# Enter once — saved permanently
 # Warning: file is plain text, readable if someone accesses your machine
 ```
 
-**Option D â€” SSH (best for WSL â€” see Section 6)**
+**Option D — SSH (best for WSL — see Section 6)**
 
 ---
 
@@ -262,12 +262,12 @@ Same options as WSL. SSH is the recommended approach on Linux. For HTTPS:
 # Option 1: Cache (1 hour by default)
 git config --global credential.helper 'cache --timeout=7200'
 
-# Option 2: libsecret (uses system keychain â€” most secure on Linux)
+# Option 2: libsecret (uses system keychain — most secure on Linux)
 sudo apt install libsecret-1-0 libsecret-1-dev
 sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
 git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 
-# Option 3: .netrc file (not recommended â€” plain text)
+# Option 3: .netrc file (not recommended — plain text)
 echo "machine github.com login yourusername password ghp_TOKEN" >> ~/.netrc
 chmod 600 ~/.netrc
 ```
@@ -277,10 +277,10 @@ chmod 600 ~/.netrc
 ### macOS
 
 ```bash
-# macOS Keychain (built-in â€” automatic)
+# macOS Keychain (built-in — automatic)
 git config --global credential.helper osxkeychain
 
-# Clone â€” enter username + PAT once
+# Clone — enter username + PAT once
 git clone https://github.com/yourusername/private-repo.git
 # Stored in macOS Keychain forever
 ```
@@ -289,27 +289,27 @@ git clone https://github.com/yourusername/private-repo.git
 
 ## 6. Clone a Private Repo via SSH
 
-SSH is the **recommended method on Linux/WSL** â€” no tokens to manage, no expiry, works everywhere.
+SSH is the **recommended method on Linux/WSL** — no tokens to manage, no expiry, works everywhere.
 
 ---
 
 ### SSH on Windows Git Bash
 
-**Step 1 â€” Check for existing SSH keys**
+**Step 1 — Check for existing SSH keys**
 ```bash
 ls -la ~/.ssh
 # Look for id_ed25519 and id_ed25519.pub
 # If they don't exist, create them:
 ```
 
-**Step 2 â€” Generate an SSH key**
+**Step 2 — Generate an SSH key**
 ```bash
 ssh-keygen -t ed25519 -C "sarowar@example.com"
 # Press Enter to accept default path: ~/.ssh/id_ed25519
 # Enter a passphrase (or press Enter for none)
 ```
 
-**Step 3 â€” Start the SSH agent and add your key**
+**Step 3 — Start the SSH agent and add your key**
 ```bash
 # In Git Bash
 eval "$(ssh-agent -s)"
@@ -319,17 +319,17 @@ ssh-add ~/.ssh/id_ed25519
 # Identity added: /c/Users/Sarowar/.ssh/id_ed25519
 ```
 
-**Step 4 â€” Add public key to GitHub**
+**Step 4 — Add public key to GitHub**
 ```bash
 # Copy the public key
 cat ~/.ssh/id_ed25519.pub
 # ssh-ed25519 AAAAC3Nza... sarowar@example.com
 ```
-1. GitHub â†’ **Settings** â†’ **SSH and GPG keys** â†’ **New SSH key**
+1. GitHub → **Settings** → **SSH and GPG keys** → **New SSH key**
 2. Title: `Git Bash on Windows`
-3. Paste public key â†’ **Add SSH key**
+3. Paste public key → **Add SSH key**
 
-**Step 5 â€” Test and clone**
+**Step 5 — Test and clone**
 ```bash
 ssh -T git@github.com
 # Hi sarowar-alam! You've successfully authenticated...
@@ -344,20 +344,20 @@ git clone git@github.com:yourusername/private-repo.git
 
 WSL has its own separate SSH key from Windows. Set it up inside WSL:
 
-**Step 1 â€” Check for existing keys (inside WSL)**
+**Step 1 — Check for existing keys (inside WSL)**
 ```bash
 ls ~/.ssh
 # If empty or no id_ed25519, generate a new key:
 ```
 
-**Step 2 â€” Generate SSH key in WSL**
+**Step 2 — Generate SSH key in WSL**
 ```bash
 ssh-keygen -t ed25519 -C "sarowar@example.com"
 # Default file: ~/.ssh/id_ed25519
 # Add a passphrase for security (optional)
 ```
 
-**Step 3 â€” Start SSH agent in WSL**
+**Step 3 — Start SSH agent in WSL**
 
 By default, the SSH agent is not automatically started in WSL. Add this to `~/.bashrc`:
 
@@ -382,17 +382,17 @@ echo 'eval $(keychain --eval --quiet id_ed25519)' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-**Step 4 â€” Copy public key and add to GitHub**
+**Step 4 — Copy public key and add to GitHub**
 ```bash
 cat ~/.ssh/id_ed25519.pub
 # ssh-ed25519 AAAAC3Nza... sarowar@example.com
 ```
-GitHub â†’ **Settings** â†’ **SSH and GPG keys** â†’ **New SSH key**
-Title: `WSL Ubuntu` â†’ paste key â†’ **Add SSH key**
+GitHub → **Settings** → **SSH and GPG keys** → **New SSH key**
+Title: `WSL Ubuntu` → paste key → **Add SSH key**
 
-> Note: This is a **different key** from your Windows Git Bash key â€” you must add it separately to GitHub.
+> Note: This is a **different key** from your Windows Git Bash key — you must add it separately to GitHub.
 
-**Step 5 â€” Test and clone**
+**Step 5 — Test and clone**
 ```bash
 ssh -T git@github.com
 # Hi sarowar-alam! You've successfully authenticated...
@@ -442,14 +442,14 @@ username=yourusername
 EOF
 
 # Or clear all Windows credentials:
-# Control Panel â†’ Credential Manager â†’ Windows Credentials
-# Remove GitHub entries â†’ try again
+# Control Panel → Credential Manager → Windows Credentials
+# Remove GitHub entries → try again
 ```
 
 ### "Permission denied (publickey)" (SSH)
 
 ```bash
-# Test with verbose output â€” see exactly what's failing
+# Test with verbose output — see exactly what's failing
 ssh -vT git@github.com
 
 # Make sure ssh-agent is running and key is loaded
@@ -459,7 +459,7 @@ ssh-add -l   # list loaded keys
 
 # Verify the correct public key is on GitHub
 cat ~/.ssh/id_ed25519.pub
-# Compare with: GitHub â†’ Settings â†’ SSH keys
+# Compare with: GitHub → Settings → SSH keys
 
 # Check file permissions (must be strict)
 chmod 700 ~/.ssh
@@ -485,7 +485,7 @@ cat /etc/resolv.conf   # check nameserver
 # Quick fix:
 echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
 
-# Permanent fix â€” prevent WSL from overwriting resolv.conf:
+# Permanent fix — prevent WSL from overwriting resolv.conf:
 echo "[network]
 generateResolvConf = false" | sudo tee -a /etc/wsl.conf
 
@@ -512,7 +512,7 @@ git remote -v
 
 ---
 
-## 8. The .git Folder â€” What's Inside
+## 8. The .git Folder — What's Inside
 
 The `.git` folder IS the repository. Delete it and you lose all history.
 
@@ -528,7 +528,7 @@ The `.git` folder IS the repository. Delete it and you lose all history.
 â”‚   â”œâ”€â”€ pack/       â† packed objects for efficiency  
 â”‚   â””â”€â”€ info/
 â”œâ”€â”€ refs/
-â”‚   â”œâ”€â”€ heads/      â† local branches â†’ refs/heads/main = hash of latest commit
+â”‚   â”œâ”€â”€ heads/      â† local branches → refs/heads/main = hash of latest commit
 â”‚   â”œâ”€â”€ remotes/    â† remote-tracking branches
 â”‚   â””â”€â”€ tags/       â† tags
 â””â”€â”€ COMMIT_EDITMSG  â† last commit message (used by --amend)
@@ -548,7 +548,7 @@ cat .git/refs/heads/main
 
 ---
 
-## 9. Remotes â€” Connecting Local to Remote
+## 9. Remotes — Connecting Local to Remote
 
 A **remote** is a named reference to a URL of another repository (usually on GitHub).
 
@@ -586,9 +586,9 @@ git remote show origin
 
 ---
 
-## 10. Upstream Remote â€” Deep Dive
+## 10. Upstream Remote — Deep Dive
 
-### What â€œupstreamâ€ really means
+### What “upstreamâ€ really means
 
 ```
 github.com/ORIGINAL-OWNER/project    â† upstream
@@ -598,7 +598,7 @@ github.com/YOUR-USERNAME/project     â† origin
 ~/projects/project                   â† local
 ```
 
-- `upstream` = the authoritative source. You never push to upstream (unless youâ€™re a maintainer).
+- `upstream` = the authoritative source. You never push to upstream (unless you’re a maintainer).
 - `origin` = your fork. You push your feature branches here.
 
 ### Cannot push to upstream (normal behavior)
@@ -645,7 +645,7 @@ git remote -v
 
 ## 11. Full Forking Contribution Workflow
 
-This is the standard open-source contribution workflow â€” used to contribute to any project on GitHub.
+This is the standard open-source contribution workflow — used to contribute to any project on GitHub.
 
 ### The Complete Cycle
 
@@ -654,14 +654,14 @@ This is the standard open-source contribution workflow â€” used to contribu
 2.  Clone YOUR fork locally
 3.  Add upstream remote (points to original)
 4.  Create a feature branch from main
-5.  Make changes â†’ commit
+5.  Make changes → commit
 6.  Sync with upstream before pushing (avoid conflicts)
 7.  Push feature branch to YOUR fork (origin)
 8.  Open a Pull Request to the original repo
-9.  Respond to review feedback â†’ push more commits
+9.  Respond to review feedback → push more commits
 10. PR gets merged (or closed)
 11. Delete your feature branch
-12. Sync your forkâ€™s main with upstream
+12. Sync your fork’s main with upstream
 13. Repeat
 ```
 
@@ -729,7 +729,7 @@ git push -u origin fix/typo-in-readme
 
 # 12. Open Pull Request on GitHub
 # Go to: github.com/ORIGINAL-OWNER/project
-# Youâ€™ll see: "fix/typo-in-readme had recent pushes â€” Compare & pull request"
+# You’ll see: "fix/typo-in-readme had recent pushes — Compare & pull request"
 
 # â”€â”€ PHASE 6: RESPOND TO FEEDBACK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
@@ -763,7 +763,7 @@ git push origin --delete fix/typo-in-readme
 
 ---
 
-## 12. Pull Requests â€” Deep Dive
+## 12. Pull Requests — Deep Dive
 
 ### PR Templates
 
@@ -804,12 +804,12 @@ Now every new PR opens pre-filled with your template.
 
 ### Draft PRs
 
-A **Draft PR** signals: â€œIâ€™m not done yet â€” do NOT merge, but feedback welcome.â€
+A **Draft PR** signals: “I’m not done yet — do NOT merge, but feedback welcome.â€
 
 **When to use:**
 - Work in progress you want early feedback on
 - Blocked waiting for another PR to merge
-- Want CI to run but arenâ€™t ready for review
+- Want CI to run but aren’t ready for review
 
 **Create a Draft PR:**
 1. Click **Compare & pull request**
@@ -821,8 +821,8 @@ A **Draft PR** signals: â€œIâ€™m not done yet â€” do NOT merge, bu
 gh pr create --draft --title "WIP: add dark mode" --body "Still working on mobile breakpoints"
 ```
 
-**Convert Draft â†’ Ready for review:**
-- On the PR page â†’ click **Ready for review** button
+**Convert Draft → Ready for review:**
+- On the PR page → click **Ready for review** button
 - This notifies assigned reviewers
 
 ---
@@ -865,7 +865,7 @@ git rebase upstream/main
 # git add .
 # git rebase --continue
 
-# 4. Force push (required after rebase â€” history changed)
+# 4. Force push (required after rebase — history changed)
 git push --force-with-lease origin feature/my-change
 ```
 
@@ -884,7 +884,7 @@ brew install gh
 # Install on Ubuntu/WSL
 sudo apt install gh
 
-# Authenticate (MFA-safe â€” opens browser)
+# Authenticate (MFA-safe — opens browser)
 gh auth login
 
 # Create a PR
@@ -937,9 +937,9 @@ A practical example contributing to this repo.
 # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 # 1. Fork on GitHub:
-#    github.com/sarowar-alam/git-fork-heroku-fundamentals â†’ Fork
+#    github.com/sarowar-alam/git-fork-heroku-fundamentals → Fork
 
-# 2. Clone YOUR fork (SSH â€” recommended)
+# 2. Clone YOUR fork (SSH — recommended)
 git clone git@github.com:YOUR-USERNAME/git-fork-heroku-fundamentals.git
 cd git-fork-heroku-fundamentals
 
@@ -982,10 +982,10 @@ gh pr create \
 # 11. Wait for review. If changes requested:
 nano docs/03-COMMANDS.md
 git add docs/03-COMMANDS.md
-git commit -m "docs: address review feedback â€” add more context"
+git commit -m "docs: address review feedback — add more context"
 git push
 
-# 12. PR is approved and merged âœ…
+# 12. PR is approved and merged ✅
 
 # 13. Cleanup
 git switch main
@@ -1009,25 +1009,25 @@ When you collaborate, you assign roles to team members. Each role grants specifi
 
 | Role | Level | Description |
 |---|---|---|
-| **Read** | 1 â€” Lowest | Can view and clone public + private repos |
+| **Read** | 1 — Lowest | Can view and clone public + private repos |
 | **Triage** | 2 | Read + manage issues and PRs (no code access) |
 | **Write** | 3 | Triage + push code to non-protected branches |
 | **Maintain** | 4 | Write + manage settings (no destructive actions) |
-| **Admin** | 5 â€” Highest | Full control including deletion and settings |
+| **Admin** | 5 — Highest | Full control including deletion and settings |
 
 ---
 
 ### Role: Read
 
-**Who is it for?** Stakeholders, QA, designers, clients â€” people who need to see code but not modify it.
+**Who is it for?** Stakeholders, QA, designers, clients — people who need to see code but not modify it.
 
 ```
 Can do:
-  âœ… View all files and commits
-  âœ… Clone the repository
-  âœ… View issues and pull requests
-  âœ… Open issues
-  âœ… Comment on issues and PRs
+  ✅ View all files and commits
+  ✅ Clone the repository
+  ✅ View issues and pull requests
+  ✅ Open issues
+  ✅ Comment on issues and PRs
 
 Cannot do:
   âŒ Push any code
@@ -1035,7 +1035,7 @@ Cannot do:
   âŒ Change settings
 ```
 
-**Example:** A client needs to review your code â€” give them **Read**.
+**Example:** A client needs to review your code — give them **Read**.
 
 ---
 
@@ -1045,18 +1045,18 @@ Cannot do:
 
 ```
 Can do everything Read can, plus:
-  âœ… Apply labels, milestones, and assignees to issues
-  âœ… Close and reopen issues
-  âœ… Request PR reviews
-  âœ… Mark comments as resolved
-  âœ… Manage GitHub Discussions
+  ✅ Apply labels, milestones, and assignees to issues
+  ✅ Close and reopen issues
+  ✅ Request PR reviews
+  ✅ Mark comments as resolved
+  ✅ Manage GitHub Discussions
 
 Cannot do:
   âŒ Push code
   âŒ Merge PRs
 ```
 
-**Example:** A scrum master organizes backlog issues â€” give them **Triage**.
+**Example:** A scrum master organizes backlog issues — give them **Triage**.
 
 ---
 
@@ -1066,11 +1066,11 @@ Cannot do:
 
 ```
 Can do everything Triage can, plus:
-  âœ… Push to non-protected branches (e.g., feature branches)
-  âœ… Merge pull requests (when you are the author)
-  âœ… Create and delete branches
-  âœ… Manage releases
-  âœ… Create GitHub Actions workflows
+  ✅ Push to non-protected branches (e.g., feature branches)
+  ✅ Merge pull requests (when you are the author)
+  ✅ Create and delete branches
+  ✅ Manage releases
+  ✅ Create GitHub Actions workflows
 
 Cannot do:
   âŒ Push directly to protected branches (main, develop)
@@ -1078,7 +1078,7 @@ Cannot do:
   âŒ Manage collaborators
 ```
 
-**Example:** A junior developer joins your team â€” give them **Write**.
+**Example:** A junior developer joins your team — give them **Write**.
 
 ---
 
@@ -1088,11 +1088,11 @@ Cannot do:
 
 ```
 Can do everything Write can, plus:
-  âœ… Push to protected branches (if allowed by rules)
-  âœ… Manage webhooks
-  âœ… View traffic and insights
-  âœ… Manage topics and description
-  âœ… Archive the repository
+  ✅ Push to protected branches (if allowed by rules)
+  ✅ Manage webhooks
+  ✅ View traffic and insights
+  ✅ Manage topics and description
+  ✅ Archive the repository
 
 Cannot do:
   âŒ Delete the repository
@@ -1101,7 +1101,7 @@ Cannot do:
   âŒ Change visibility (public/private)
 ```
 
-**Example:** A tech lead who manages releases but shouldn't be able to delete the repo â€” give them **Maintain**.
+**Example:** A tech lead who manages releases but shouldn't be able to delete the repo — give them **Maintain**.
 
 ---
 
@@ -1111,43 +1111,43 @@ Cannot do:
 
 ```
 Can do everything Maintain can, plus:
-  âœ… Delete the repository
-  âœ… Archive the repository
-  âœ… Transfer ownership
-  âœ… Change visibility (public â†” private)
-  âœ… Add and remove collaborators
-  âœ… Set and change branch protection rules
-  âœ… Enable/disable features (Issues, Wiki, Discussions)
-  âœ… Manage GitHub Secrets and Variables
-  âœ… Bypass branch protection rules
+  ✅ Delete the repository
+  ✅ Archive the repository
+  ✅ Transfer ownership
+  ✅ Change visibility (public â†” private)
+  ✅ Add and remove collaborators
+  ✅ Set and change branch protection rules
+  ✅ Enable/disable features (Issues, Wiki, Discussions)
+  ✅ Manage GitHub Secrets and Variables
+  ✅ Bypass branch protection rules
 ```
 
-**Example:** You and your co-founder on your startup's repo â€” both **Admin**.
+**Example:** You and your co-founder on your startup's repo — both **Admin**.
 
 ---
 
 ### How to Assign Roles
 
 **For a personal repo (collaborators):**
-1. Repo â†’ **Settings** â†’ **Collaborators** â†’ **Add people**
+1. Repo → **Settings** → **Collaborators** → **Add people**
 2. Search by username or email
-3. Select their role â†’ Send invitation
+3. Select their role → Send invitation
 
 **For an organization repo (teams):**
-1. Organization â†’ **Teams** â†’ Create a team (e.g., "Backend Devs")
+1. Organization → **Teams** → Create a team (e.g., "Backend Devs")
 2. Add members to the team
-3. In repo â†’ **Settings** â†’ **Collaborators and teams** â†’ Add team â†’ Assign role
+3. In repo → **Settings** → **Collaborators and teams** → Add team → Assign role
 
 ---
 
 ### Quick Decision Guide
 
 ```
-Needs to SEE code only?           â†’ Read
-Manages issues and PRs?           â†’ Triage
-Writes code and opens PRs?        â†’ Write
-Manages releases and settings?    â†’ Maintain
-Full control, owns the repo?      â†’ Admin
+Needs to SEE code only?           → Read
+Manages issues and PRs?           → Triage
+Writes code and opens PRs?        → Write
+Manages releases and settings?    → Maintain
+Full control, owns the repo?      → Admin
 ```
 
 ---
@@ -1158,14 +1158,14 @@ Full control, owns the repo?      â†’ Admin
 - `git clone` downloads a full copy of a remote repo (public = no auth, private = PAT or SSH)
 - Cloning private repos: use **HTTPS+PAT** (Windows default) or **SSH key** (recommended on Linux/WSL)
 - Each environment (Windows, Git Bash, WSL, Ubuntu, macOS) has its own credential setup
-- `.git/` is Gitâ€™s internal database â€” never delete it manually
+- `.git/` is Git’s internal database — never delete it manually
 - **Remotes** link your local repo to GitHub; `origin` = your repo, `upstream` = the original you forked from
-- **Upstream deep dive**: never push to upstream â€” contribute via Pull Requests
-- **Full forking cycle**: fork â†’ clone â†’ add upstream â†’ branch â†’ rebase â†’ PR â†’ cleanup
+- **Upstream deep dive**: never push to upstream — contribute via Pull Requests
+- **Full forking cycle**: fork → clone → add upstream → branch → rebase → PR → cleanup
 - **Pull Requests**: use templates, draft PRs, link issues (`Closes #42`), update via rebase, manage with `gh` CLI
-- **Roles** control what each collaborator can do: Read â†’ Triage â†’ Write â†’ Maintain â†’ Admin
+- **Roles** control what each collaborator can do: Read → Triage → Write → Maintain → Admin
 
-**Next:** [03 â€” Core Git Commands â†’](./03-COMMANDS.md)
+**Next:** [03 — Core Git Commands →](./03-COMMANDS.md)
 
 ---
 

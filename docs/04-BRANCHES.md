@@ -1,4 +1,4 @@
-# 04 â€” Branching Deep Dive
+# 04 — Branching Deep Dive
 
 > **Phase 4 of 7** | Master branches, merging, rebasing, and workflows.
 
@@ -20,7 +20,7 @@
 
 ## 1. What is a Branch?
 
-A **branch** is a lightweight, movable pointer to a commit. Creating a branch costs nothing â€” it's just a 41-byte file in `.git/refs/heads/`.
+A **branch** is a lightweight, movable pointer to a commit. Creating a branch costs nothing — it's just a 41-byte file in `.git/refs/heads/`.
 
 ```
 main:     A â† B â† C â† D (HEAD)
@@ -31,9 +31,9 @@ feature:            E â† F (HEAD of feature)
 Each team member works on their own branch. When done, branches are merged back.
 
 **Why use branches?**
-- Isolate work â€” main stays clean and deployable at all times
-- Enable parallel development â€” multiple features at once
-- Safe experimentation â€” try things without risk
+- Isolate work — main stays clean and deployable at all times
+- Enable parallel development — multiple features at once
+- Safe experimentation — try things without risk
 - Required for Pull Requests on GitHub
 
 ---
@@ -97,7 +97,7 @@ git branch -m old-name new-name
 # Delete a branch (only if fully merged)
 git branch -d feature/login
 
-# Force delete (even if not merged â€” careful!)
+# Force delete (even if not merged — careful!)
 git branch -D feature/abandoned
 
 # Delete a remote branch
@@ -139,7 +139,7 @@ Merging brings changes from one branch into another.
 
 ### Fast-Forward Merge
 
-If the target branch has no new commits since the branch point, Git just moves the pointer forward â€” no merge commit created.
+If the target branch has no new commits since the branch point, Git just moves the pointer forward — no merge commit created.
 
 ```
 Before:
@@ -223,9 +223,9 @@ const PORT = process.env.PORT || 3000;
 ```
 
 **What each part means:**
-- `<<<<<<< HEAD` â€” your current branch's version
-- `=======` â€” separator
-- `>>>>>>> feature/login` â€” incoming branch's version
+- `<<<<<<< HEAD` — your current branch's version
+- `=======` — separator
+- `>>>>>>> feature/login` — incoming branch's version
 
 ### Step-by-step conflict resolution
 
@@ -253,10 +253,10 @@ git commit
 ### VS Code Conflict Resolution (easier)
 
 When VS Code detects a conflict it shows buttons:
-- **Accept Current Change** â€” keep main's version
-- **Accept Incoming Change** â€” keep feature's version
-- **Accept Both Changes** â€” keep both
-- **Compare Changes** â€” see side-by-side diff
+- **Accept Current Change** — keep main's version
+- **Accept Incoming Change** — keep feature's version
+- **Accept Both Changes** — keep both
+- **Compare Changes** — see side-by-side diff
 
 ### Tools for conflict resolution
 
@@ -337,7 +337,7 @@ Change `pick` to:
 | `drop` (d) | Delete the commit entirely |
 | `exec` (x) | Run a shell command |
 
-**Example â€” squash 3 commits into 1:**
+**Example — squash 3 commits into 1:**
 ```
 pick a3f9c2b feat: add user auth
 squash b4d8e1f fix: typo            â† will merge into above
@@ -346,7 +346,7 @@ squash c5e7f2a chore: lint fix      â† will merge into above
 
 ---
 
-### Rebase vs Merge â€” When to Use Each
+### Rebase vs Merge — When to Use Each
 
 | | Merge | Rebase |
 |---|---|---|
@@ -510,7 +510,7 @@ Good for teams that deploy continuously.
 
 Git 2.23 (2019) split the overloaded `git checkout` into two focused commands.
 
-### `git switch` â€” change branches
+### `git switch` — change branches
 
 ```bash
 # Switch to a branch
@@ -526,7 +526,7 @@ git switch -                       # was: git checkout -
 git switch -c hotfix v1.2.0        # was: git checkout -b hotfix v1.2.0
 ```
 
-### `git restore` â€” restore files
+### `git restore` — restore files
 
 ```bash
 # Discard working directory changes
@@ -539,11 +539,11 @@ git restore --staged index.js      # was: git reset HEAD index.js
 git restore --source a3f9c2b index.js
 ```
 
-> `git checkout` still works â€” these are just clearer alternatives.
+> `git checkout` still works — these are just clearer alternatives.
 
 ---
 
-**Next:** [05 â€” Branch Protection Rules â†’](./05-BRANCH-PROTECTION.md)
+**Next:** [05 — Branch Protection Rules →](./05-BRANCH-PROTECTION.md)
 
 ---
 

@@ -1,4 +1,4 @@
-# 07 â€” Deploy to Heroku
+# 07 — Deploy to Heroku
 
 > **Phase 7 of 7** | Ship your Node.js app live. MFA-safe deployment using API Key authentication.
 
@@ -26,10 +26,10 @@ Before deploying, make sure you have:
 
 - [x] A [Heroku account](https://signup.heroku.com/) (free tier available)
 - [x] MFA enabled on Heroku (you already have this)
-- [x] `index.js` â€” your Express server
-- [x] `package.json` â€” with a `"start"` script: `"start": "node index.js"`
-- [x] `Procfile` â€” containing: `web: node index.js`
-- [x] `.gitignore` â€” excluding `node_modules/`
+- [x] `index.js` — your Express server
+- [x] `package.json` — with a `"start"` script: `"start": "node index.js"`
+- [x] `Procfile` — containing: `web: node index.js`
+- [x] `.gitignore` — excluding `node_modules/`
 - [x] A GitHub repo with your code pushed
 
 **Verify your app files:**
@@ -51,10 +51,10 @@ cat package.json | grep '"start"'
 ### Windows
 
 ```powershell
-# Option A â€” winget
+# Option A — winget
 winget install --id Heroku.HerokuCLI
 
-# Option B â€” direct download
+# Option B — direct download
 # Go to: https://devcenter.heroku.com/articles/heroku-cli
 # Download the Windows installer (.exe)
 ```
@@ -68,13 +68,13 @@ brew tap heroku/brew && brew install heroku
 ### Linux (Ubuntu/Debian)
 
 ```bash
-# Option A â€” Snap (easiest)
+# Option A — Snap (easiest)
 sudo snap install --classic heroku
 
-# Option B â€” curl installer
+# Option B — curl installer
 curl https://cli-assets.heroku.com/install.sh | sh
 
-# Option C â€” npm
+# Option C — npm
 npm install -g heroku
 ```
 
@@ -90,21 +90,21 @@ heroku --version
 ## 3. Authenticate with Heroku (MFA-Safe)
 
 > **Why normal login fails with MFA on Ubuntu/WSL:**
-> `heroku login` opens a browser window. On headless terminals (Ubuntu server, WSL without GUI), there is no browser â€” the command hangs or fails.
+> `heroku login` opens a browser window. On headless terminals (Ubuntu server, WSL without GUI), there is no browser — the command hangs or fails.
 > `heroku login -i` is blocked by Heroku when MFA is enabled.
 
-### âœ… The Solution: API Key Authentication
+### ✅ The Solution: API Key Authentication
 
-This works everywhere â€” Ubuntu, WSL, CI/CD, servers â€” regardless of MFA.
+This works everywhere — Ubuntu, WSL, CI/CD, servers — regardless of MFA.
 
-#### Step 1 â€” Get your API Key from Heroku Dashboard
+#### Step 1 — Get your API Key from Heroku Dashboard
 
 1. Log in to [https://dashboard.heroku.com](https://dashboard.heroku.com) from your browser
-2. Click your **profile avatar** (top-right) â†’ **Account settings**
+2. Click your **profile avatar** (top-right) → **Account settings**
 3. Scroll down to **API Key** section
-4. Click **Reveal** â†’ copy the key (looks like: `01234567-89ab-cdef-0123-456789abcdef`)
+4. Click **Reveal** → copy the key (looks like: `01234567-89ab-cdef-0123-456789abcdef`)
 
-#### Step 2 â€” Set the API Key in your terminal
+#### Step 2 — Set the API Key in your terminal
 
 **For the current terminal session only:**
 ```bash
@@ -117,16 +117,16 @@ echo 'export HEROKU_API_KEY=01234567-89ab-cdef-0123-456789abcdef' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-**Windows (PowerShell â€” current session):**
+**Windows (PowerShell — current session):**
 ```powershell
 $env:HEROKU_API_KEY = "01234567-89ab-cdef-0123-456789abcdef"
 ```
 
-**Windows (permanent â€” via System Environment Variables):**
+**Windows (permanent — via System Environment Variables):**
 1. Search "Environment Variables" in Start Menu
 2. Add new User variable: `HEROKU_API_KEY` = `your-api-key`
 
-#### Step 3 â€” Verify authentication
+#### Step 3 — Verify authentication
 
 ```bash
 heroku auth:whoami
@@ -247,7 +247,7 @@ heroku open
 # https://ostad-devops.herokuapp.com
 ```
 
-If the page loads â€” your app is live on the internet!
+If the page loads — your app is live on the internet!
 
 ---
 
@@ -257,7 +257,7 @@ If the page loads â€” your app is live on the internet!
 # View recent logs
 heroku logs
 
-# Stream live logs (tail mode â€” Ctrl+C to stop)
+# Stream live logs (tail mode — Ctrl+C to stop)
 heroku logs --tail
 
 # View last N log lines
@@ -309,28 +309,28 @@ Heroku automatically rebuilds and redeploys on every push.
 
 ## 9. Connect GitHub for Auto-Deploy
 
-Instead of manually running `git push heroku main`, set up automatic deployment from GitHub â€” every push to `main` deploys automatically.
+Instead of manually running `git push heroku main`, set up automatic deployment from GitHub — every push to `main` deploys automatically.
 
 ### Steps
 
-1. Go to **[Heroku Dashboard](https://dashboard.heroku.com)** â†’ select your app `ostad-devops`
+1. Go to **[Heroku Dashboard](https://dashboard.heroku.com)** → select your app `ostad-devops`
 2. Click the **Deploy** tab
-3. Under **Deployment method** â†’ click **GitHub**
-4. Click **Connect to GitHub** â†’ authorize Heroku
+3. Under **Deployment method** → click **GitHub**
+4. Click **Connect to GitHub** → authorize Heroku
 5. Search for your repo: `git-fork-heroku-fundamentals`
 6. Click **Connect**
 
 ### Enable Automatic Deploys
 
-7. Under **Automatic deploys** â†’ select branch: `main`
-8. Optional: âœ… **Wait for CI to pass before deploy** (recommended with GitHub Actions)
+7. Under **Automatic deploys** → select branch: `main`
+8. Optional: ✅ **Wait for CI to pass before deploy** (recommended with GitHub Actions)
 9. Click **Enable Automatic Deploys**
 
-Now `git push origin main` â†’ triggers a Heroku build automatically.
+Now `git push origin main` → triggers a Heroku build automatically.
 
 ### Manual Deploy from Dashboard
 
-10. Under **Manual deploy** â†’ **Deploy Branch** (useful for testing)
+10. Under **Manual deploy** → **Deploy Branch** (useful for testing)
 
 ---
 
@@ -373,7 +373,7 @@ npm install dotenv
 ```
 
 ```javascript
-// index.js â€” at the top
+// index.js — at the top
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
@@ -438,7 +438,7 @@ git ls-files Procfile
 
 ---
 
-### Error: App crashes â€” `H10` in logs
+### Error: App crashes — `H10` in logs
 ```bash
 heroku logs --tail
 # Look for the error message before H10
@@ -446,7 +446,7 @@ heroku logs --tail
 
 Common causes:
 - `npm start` fails (missing dependency)
-- Port not bound correctly â€” Express must use `process.env.PORT`:
+- Port not bound correctly — Express must use `process.env.PORT`:
   ```javascript
   const PORT = process.env.PORT || 3000;  // â† must include process.env.PORT
   app.listen(PORT, ...);
@@ -463,7 +463,7 @@ heroku create ostad-devops
 # Try a different unique name
 heroku create ostad-devops-2026
 heroku create ostad-sarowar-devops
-# Or leave blank â€” Heroku auto-generates a name
+# Or leave blank — Heroku auto-generates a name
 heroku create
 # Creating â¬¢ tranquil-meadow-12345... done
 ```
@@ -521,7 +521,7 @@ git push origin main             # also push to GitHub
 https://ostad-devops.herokuapp.com
 ```
 
-You've completed the full journey: **GitHub account â†’ Git CLI â†’ Repositories â†’ Commands â†’ Branches â†’ Protection â†’ Fork & Collaborate â†’ Deploy**.
+You've completed the full journey: **GitHub account → Git CLI → Repositories → Commands → Branches → Protection → Fork & Collaborate → Deploy**.
 
 ---
 

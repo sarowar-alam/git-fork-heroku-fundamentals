@@ -1,4 +1,4 @@
-# 03 â€” Core Git Commands
+# 03 — Core Git Commands
 
 > **Phase 3 of 7** | Every essential Git command with real examples.
 
@@ -85,7 +85,7 @@ git clone https://github.com/user/repo.git my-folder
 # Clone specific branch
 git clone -b develop https://github.com/user/repo.git
 
-# Shallow clone (latest snapshot only â€” fast, no full history)
+# Shallow clone (latest snapshot only — fast, no full history)
 git clone --depth 1 https://github.com/user/repo.git
 
 # Clone including submodules
@@ -122,7 +122,7 @@ git add src/
 
 **Staging area concept:**
 ```
-Working Directory  â†’  git add  â†’  Staging Area  â†’  git commit  â†’  Repository
+Working Directory  →  git add  →  Staging Area  →  git commit  →  Repository
 (your edits)                      (what will be                  (permanent history)
                                    in next commit)
 ```
@@ -164,7 +164,7 @@ git commit --date="2026-01-01T12:00:00" -m "chore: backdate test commit"
 type(scope): short summary (max 72 chars)
 
 Longer description if needed. Explain WHY not WHAT.
-The code shows what â€” the message shows why.
+The code shows what — the message shows why.
 
 Refs: #123
 ```
@@ -216,7 +216,7 @@ git add new-name.js
 
 ### `git status`
 
-Show what has changed â€” staged, unstaged, and untracked files.
+Show what has changed — staged, unstaged, and untracked files.
 
 ```bash
 # Full status output
@@ -281,8 +281,8 @@ git log --stat
 git log -p
 
 # Formatted output
-git log --pretty=format:"%h %an %ar â€” %s"
-# a3f9c2b Sarowar Alam 2 hours ago â€” feat: add user auth
+git log --pretty=format:"%h %an %ar — %s"
+# a3f9c2b Sarowar Alam 2 hours ago — feat: add user auth
 ```
 
 ---
@@ -312,7 +312,7 @@ git show --stat a3f9c2b
 
 ### `git blame`
 
-Show who last modified each line of a file â€” and in which commit.
+Show who last modified each line of a file — and in which commit.
 
 ```bash
 # Blame a file
@@ -334,7 +334,7 @@ git blame -w index.js
 
 ### `git reflog`
 
-Show the history of HEAD â€” including commits you reset or deleted. Your safety net.
+Show the history of HEAD — including commits you reset or deleted. Your safety net.
 
 ```bash
 # Show reflog
@@ -428,7 +428,7 @@ git remote show origin
 
 ### `git fetch`
 
-Download changes from remote â€” but DON'T merge them into your local branch.
+Download changes from remote — but DON'T merge them into your local branch.
 
 ```bash
 # Fetch from default remote (origin)
@@ -502,7 +502,7 @@ git push origin v1.0.0
 git push origin --delete feature/old-branch
 git push origin :feature/old-branch   # same
 
-# Force push (DANGEROUS â€” rewrites remote history)
+# Force push (DANGEROUS — rewrites remote history)
 # Only use on your own private feature branches
 git push --force-with-lease   # safer: fails if remote has new commits
 git push -f                   # dangerous: no safety check
@@ -540,17 +540,17 @@ git restore --source a3f9c2b index.js
 Move the HEAD and branch pointer backward. Can also unstage files.
 
 ```bash
-# Unstage a file (keep changes in working dir) â€” same as restore --staged
+# Unstage a file (keep changes in working dir) — same as restore --staged
 git reset HEAD index.js
 
-# Undo last commit â€” keep changes STAGED
+# Undo last commit — keep changes STAGED
 git reset --soft HEAD~1
 
-# Undo last commit â€” keep changes in WORKING DIRECTORY (unstaged)
+# Undo last commit — keep changes in WORKING DIRECTORY (unstaged)
 git reset HEAD~1         # default is --mixed
 git reset --mixed HEAD~1
 
-# Undo last commit â€” DISCARD all changes (DESTRUCTIVE)
+# Undo last commit — DISCARD all changes (DESTRUCTIVE)
 git reset --hard HEAD~1
 
 # Reset to a specific commit
@@ -562,16 +562,16 @@ git reset --soft HEAD~3
 
 **The 3 reset modes:**
 ```
---soft   â†’ moves HEAD only. Changes stay staged.
---mixed  â†’ moves HEAD + unstages changes. Changes in working dir.
---hard   â†’ moves HEAD + discards all changes. CANNOT UNDO without reflog.
+--soft   → moves HEAD only. Changes stay staged.
+--mixed  → moves HEAD + unstages changes. Changes in working dir.
+--hard   → moves HEAD + discards all changes. CANNOT UNDO without reflog.
 ```
 
 ---
 
 ### `git revert`
 
-Create a new commit that undoes a previous commit. **Safe â€” never rewrites history.**
+Create a new commit that undoes a previous commit. **Safe — never rewrites history.**
 
 ```bash
 # Revert the last commit
@@ -596,7 +596,7 @@ git revert a3f9c2b..HEAD
 Remove untracked files and directories from the working directory.
 
 ```bash
-# Dry run â€” show what WOULD be deleted (safe to run first)
+# Dry run — show what WOULD be deleted (safe to run first)
 git clean -n
 
 # Delete untracked files
@@ -674,7 +674,7 @@ git stash pop          # restore your work there
 
 ## 8. Tagging
 
-Tags mark specific commits â€” typically used for release versions.
+Tags mark specific commits — typically used for release versions.
 
 ```bash
 # List all tags
@@ -686,7 +686,7 @@ git tag -l "v1.*"
 # Create a lightweight tag (just a pointer)
 git tag v1.0.0
 
-# Create an annotated tag (recommended â€” has metadata)
+# Create an annotated tag (recommended — has metadata)
 git tag -a v1.0.0 -m "Release version 1.0.0"
 
 # Tag a specific past commit
@@ -710,9 +710,9 @@ git push origin :refs/tags/v1.0.0   # same
 ```
 
 **Semantic versioning convention:** `vMAJOR.MINOR.PATCH`
-- `MAJOR` â€” breaking changes
-- `MINOR` â€” new features (backward compatible)
-- `PATCH` â€” bug fixes
+- `MAJOR` — breaking changes
+- `MINOR` — new features (backward compatible)
+- `PATCH` — bug fixes
 
 ---
 
@@ -773,7 +773,7 @@ git bisect run npm test
 
 ### `git archive`
 
-Export a snapshot of your repo as a zip/tar â€” without the `.git/` folder.
+Export a snapshot of your repo as a zip/tar — without the `.git/` folder.
 
 ```bash
 # Export main branch as a zip
@@ -814,7 +814,7 @@ git rm lib/
 
 ### `git worktree`
 
-Check out multiple branches simultaneously in separate directories â€” without cloning again.
+Check out multiple branches simultaneously in separate directories — without cloning again.
 
 ```bash
 # Add a worktree for a branch
@@ -864,7 +864,7 @@ git worktree remove ../hotfix-branch
 
 ---
 
-**Next:** [04 â€” Branching Deep Dive â†’](./04-BRANCHES.md)
+**Next:** [04 — Branching Deep Dive →](./04-BRANCHES.md)
 
 ---
 

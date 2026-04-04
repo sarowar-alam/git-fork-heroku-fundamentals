@@ -1,4 +1,4 @@
-# 06 â€” Fork & Collaborate
+# 06 — Fork & Collaborate
 
 > **Phase 6 of 7** | Fork repos, sync with upstream, open Pull Requests, and do code reviews.
 
@@ -42,7 +42,7 @@ Unlike cloning, a fork:
 | | Fork | Clone |
 |---|---|---|
 | Lives on | GitHub (your account) | Your machine |
-| Linked to original? | Yes â€” can open PRs | No â€” independent copy |
+| Linked to original? | Yes — can open PRs | No — independent copy |
 | Used for | Contributing to OSS, team collaboration | Working on your own repo |
 
 ---
@@ -58,7 +58,7 @@ Unlike cloning, a fork:
 5. Check/uncheck "Copy the `main` branch only" as needed
 6. Click **Create fork**
 
-GitHub creates `github.com/sarowar-alam/project` â€” your own full copy.
+GitHub creates `github.com/sarowar-alam/project` — your own full copy.
 
 ### Using GitHub CLI
 
@@ -113,8 +113,8 @@ git remote -v
 ```
 
 **Convention:**
-- `origin` â†’ your fork on GitHub
-- `upstream` â†’ the original repo you forked from
+- `origin` → your fork on GitHub
+- `upstream` → the original repo you forked from
 
 ---
 
@@ -153,13 +153,13 @@ git push --force-with-lease origin main
 
 **Via GitHub UI (easier for one-off syncing):**
 1. Go to your fork on GitHub
-2. Click **Sync fork** â†’ **Update branch**
+2. Click **Sync fork** → **Update branch**
 
 ---
 
 ## 6. Make Changes and Push
 
-Always work on a **feature branch** â€” never directly on `main`.
+Always work on a **feature branch** — never directly on `main`.
 
 ```bash
 # 1. Ensure you're on main and it's up-to-date
@@ -181,7 +181,7 @@ git push -u origin feature/add-dark-mode
 ```
 
 After pushing, GitHub will show a banner:
-> "Your recently pushed branches: feature/add-dark-mode â€” **Compare & pull request**"
+> "Your recently pushed branches: feature/add-dark-mode — **Compare & pull request**"
 
 ---
 
@@ -192,7 +192,7 @@ A **Pull Request (PR)** proposes your changes to be merged into a branch of the 
 ### Steps
 
 1. On GitHub, click **Compare & pull request** (after pushing)
-   â€” OR go to the original repo â†’ **Pull requests** â†’ **New pull request**
+   — OR go to the original repo → **Pull requests** → **New pull request**
 
 2. Set:
    - **Base repository**: `sarowar-alam/git-fork-heroku-fundamentals`
@@ -211,7 +211,7 @@ Adds a dark mode toggle button to the navigation bar.
 Users can switch between light and dark themes. Preference is saved in localStorage.
 
 ## Why?
-Addresses issue #42 â€” dark mode request from users.
+Addresses issue #42 — dark mode request from users.
 
 ## How to test?
 1. Open the app
@@ -236,7 +236,7 @@ Addresses issue #42 â€” dark mode request from users.
 
 ### As a Reviewer
 
-1. Open the PR â†’ go to **Files changed** tab
+1. Open the PR → go to **Files changed** tab
 2. Review each file's diff (red = deleted, green = added)
 3. **Leave inline comments**: click the `+` on any line
 4. **Suggest changes**: in a comment, use:
@@ -247,9 +247,9 @@ Addresses issue #42 â€” dark mode request from users.
    ````
    The author can apply your suggestion with one click.
 
-5. When done reviewing â†’ click **Review changes**:
+5. When done reviewing → click **Review changes**:
    - **Comment**: general feedback, no block
-   - **Approve**: âœ… changes look good, ready to merge
+   - **Approve**: ✅ changes look good, ready to merge
    - **Request changes**: âŒ must address issues before merging
 
 ### As the PR Author
@@ -257,9 +257,9 @@ Addresses issue #42 â€” dark mode request from users.
 ```bash
 # Apply reviewer feedback: make changes and push more commits
 git add .
-git commit -m "fix: address review feedback â€” use env var for PORT"
+git commit -m "fix: address review feedback — use env var for PORT"
 git push
-# PR updates automatically â€” reviewer is notified
+# PR updates automatically — reviewer is notified
 
 # Re-request review after addressing feedback
 # (click "Re-request review" button next to reviewer's name on GitHub)
@@ -300,12 +300,12 @@ git merge --no-ff feature/add-dark-mode
 
 ```
 main: A â”€â”€ B â”€â”€ C â”€â”€ S
-                     â†‘ (single commit â€” all feature commits squashed)
+                     â†‘ (single commit — all feature commits squashed)
 feature:      D â”€â”€ E (D + E squashed into S)
 ```
 
 - All feature commits become one clean commit on main
-- Cleaner history â€” no WIP commits
+- Cleaner history — no WIP commits
 - Feature branch history is discarded after merge
 - Good for: GitHub Flow, teams that want clean main history
 
@@ -324,7 +324,7 @@ main: A â”€â”€ B â”€â”€ C â”€â”€ D' â”€â”�
 ```
 
 - Each feature commit is replayed on top of main
-- Linear history â€” no merge commit
+- Linear history — no merge commit
 - Commits get new hashes
 - Good for: trunk-based development, linear history preference
 
@@ -386,14 +386,14 @@ git switch -c feature/my-feature
 git add .
 git commit -m "feat: describe the feature"
 git push -u origin feature/my-feature
-# â†’ Go to GitHub â†’ Open Pull Request
+# → Go to GitHub → Open Pull Request
 
 # â”€â”€ DURING REVIEW (if feedback) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # ... make fixes ...
 git add .
 git commit -m "fix: address review comments"
 git push
-# â†’ Re-request review on GitHub
+# → Re-request review on GitHub
 
 # â”€â”€ AFTER PR IS MERGED â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 git switch main
@@ -407,7 +407,7 @@ git push origin --delete feature/my-feature
 
 ---
 
-**Next:** [07 â€” Deploy to Heroku â†’](./07-HEROKU-DEPLOY.md)
+**Next:** [07 — Deploy to Heroku →](./07-HEROKU-DEPLOY.md)
 
 ---
 
